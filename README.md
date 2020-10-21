@@ -1,5 +1,3 @@
-# 🚧 This is work-in-progress, see [#1](https://github.com/probot/octokit-auth-probot/pull/1)
-
 # octokit-auth-probot
 
 > Octokit authentication strategy that supports token, app (JWT), and event-based installation authentication
