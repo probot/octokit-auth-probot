@@ -123,7 +123,6 @@ describe("README examples", () => {
       const eventOctokit = ((await octokit.auth({
         type: "event-octokit",
         event: { name: "push", payload: { installation: { id: 123 } } },
-        octokit,
       })) as unknown) as InstanceType<typeof ProbotOctokit>;
 
       const { data } = await eventOctokit.request("/");
@@ -173,7 +172,6 @@ describe("README examples", () => {
       const eventOctokit = ((await octokit.auth({
         type: "event-octokit",
         event: { name: "push", payload: { installation: { id: 123 } } },
-        octokit,
       })) as unknown) as InstanceType<typeof ProbotOctokit>;
 
       const { data } = await eventOctokit.request("/");
@@ -202,7 +200,6 @@ describe("README examples", () => {
           name: "installation",
           payload: { action: "deleted", installation: { id: 123 } },
         },
-        octokit,
       })) as unknown) as InstanceType<typeof ProbotOctokit>;
 
       try {
