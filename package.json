@@ -1,0 +1,88 @@
+{
+  "name": "octokit-auth-probot",
+  "version": "1.0.0",
+  "description": "Octokit authentication strategy that supports token, app (JWT), and event-based installation authentication",
+  "main": "index.js",
+  "scripts": {
+    "build": "pika build",
+    "lint": "prettier --check '{src,test}/**/*.{ts,md}' *.md *.json",
+    "lint:fix": "prettier --write '{src,test}/**/*.{ts,md}' *.md *.json",
+    "pretest": "npm run -s lint",
+    "test": "jest --coverage"
+  },
+  "repository": "https://github.com/probot/octokit-auth-probot",
+  "keywords": [
+    "octokit-authentication-strategy"
+  ],
+  "author": "Gregor Martynus (https://twitter.com/gr2m)",
+  "license": "ISC",
+  "dependencies": {
+    "@octokit/auth-app": "^2.9.0",
+    "@octokit/auth-token": "^2.4.2",
+    "@octokit/auth-unauthenticated": "^1.0.0",
+    "@octokit/types": "^5.5.0"
+  },
+  "peerDependencies": {
+    "@octokit/core": ">=3.2"
+  },
+  "devDependencies": {
+    "@octokit/core": "^3.2.0",
+    "@octokit/tsconfig": "^1.0.1",
+    "@pika/pack": "^0.5.0",
+    "@pika/plugin-build-node": "^0.9.0",
+    "@pika/plugin-build-web": "^0.9.0",
+    "@pika/plugin-ts-standard-pkg": "^0.9.0",
+    "@types/jest": "^26.0.0",
+    "fetch-mock": "^9.0.0",
+    "jest": "^26.0.1",
+    "mockdate": "^3.0.2",
+    "prettier": "^2.0.4",
+    "semantic-release": "^17.0.0",
+    "semantic-release-plugin-update-version-in-files": "^1.0.0",
+    "ts-jest": "^26.0.0",
+    "typescript": "^4.0.5"
+  },
+  "@pika/pack": {
+    "pipeline": [
+      [
+        "@pika/plugin-ts-standard-pkg"
+      ],
+      [
+        "@pika/plugin-build-node"
+      ]
+    ]
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "coverageThreshold": {
+      "global": {
+        "statements": 100,
+        "branches": 100,
+        "functions": 100,
+        "lines": 100
+      }
+    },
+    "globals": {
+      "ts-jest": {
+        "tsconfig": {
+          "esModuleInterop": true,
+          "allowSyntheticDefaultImports": true
+        }
+      }
+    }
+  },
+  "release": {
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/github",
+      [
+        "@semantic-release/npm",
+        {
+          "pkgRoot": "./pkg"
+        }
+      ]
+    ]
+  }
+}
