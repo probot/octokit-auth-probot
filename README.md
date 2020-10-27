@@ -2,11 +2,14 @@
 
 > Octokit authentication strategy that supports token, app (JWT), and event-based installation authentication
 
+[![@latest](https://img.shields.io/npm/v/octokit-auth-probot.svg)](https://www.npmjs.com/package/octokit-auth-probot)
+[![Build Status](https://github.com/probot/octokit-auth-probot/workflows/Test/badge.svg)](https://github.com/probot/octokit-auth-probot/actions?query=workflow%3ATest)
+
 ## Usage
 
 ```js
 const { Octokit } = require("@octokit/core");
-const { createProbotAuth } = require("@probot/octokit-auth-probt");
+const { createProbotAuth } = require("octokit-auth-probot");
 
 const ProbotOctokit = Octokit.defaults({
   authStrategy: createProbotAuth,
