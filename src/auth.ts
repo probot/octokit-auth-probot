@@ -29,7 +29,8 @@ export async function auth(state: State, options: AuthOptions) {
   }
 
   const action = options.event.payload.action;
-  const installationId = options.event.payload.installation?.id;
+  const installationId =
+    options.event.payload.installation && options.event.payload.installation.id;
   const fullEventName = options.event.name + (action ? "." + action : "");
 
   const OctokitWithEventAuth = (state.octokit
