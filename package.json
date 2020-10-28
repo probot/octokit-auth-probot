@@ -17,7 +17,7 @@
   "author": "Gregor Martynus (https://twitter.com/gr2m)",
   "license": "ISC",
   "dependencies": {
-    "@octokit/auth-app": "^2.9.0",
+    "@octokit/auth-app": "^2.10.0",
     "@octokit/auth-token": "^2.4.2",
     "@octokit/auth-unauthenticated": "^1.0.0",
     "@octokit/types": "^5.5.0"
