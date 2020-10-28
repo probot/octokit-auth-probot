@@ -29,10 +29,23 @@ export async function auth(state: State, options: AuthOptions) {
   }
 
   const action = options.event.payload.action;
-  const installationId = options.event.payload.installation.id;
+  const installationId =
+    options.event.payload.installation && options.event.payload.installation.id;
+  const fullEventName = options.event.name + (action ? "." + action : "");
 
   const OctokitWithEventAuth = (state.octokit
     .constructor as unknown) as typeof Octokit;
+
+  if (!installationId) {
+    const { auth, ...octokitOptions } = state.octokitOptions;
+    return new OctokitWithEventAuth({
+      authStrategy: createUnauthenticatedAuth,
+      auth: {
+        reason: `Handling a "${fullEventName}" event: an "installation" key is missing. The installation ID cannot be determined`,
+      },
+      ...octokitOptions,
+    });
+  }
 
   if (
     options.event.name === "installation" &&
@@ -42,7 +55,7 @@ export async function auth(state: State, options: AuthOptions) {
     return new OctokitWithEventAuth({
       authStrategy: createUnauthenticatedAuth,
       auth: {
-        reason: `Handling an installation.${action} event: The app's access has been revoked from @octokit (id: ${installationId})`,
+        reason: `Handling a "${fullEventName}" event: The app's access has been revoked from @octokit (id: ${installationId})`,
       },
       ...octokitOptions,
     });
