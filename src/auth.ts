@@ -6,6 +6,21 @@ import { AuthOptions, State } from "./types";
 export async function auth(state: State, options: AuthOptions) {
   // return authentication from internal auth instance unless the event is "event-octokit"
   if (options.type !== "event-octokit") {
+    if (
+      state.type === "token" &&
+      options.type === "installation" &&
+      options.factory
+    ) {
+      const { type, factory, ...factoryAuthOptions } = options;
+      return factory(
+        // @ts-ignore factory options differ if internal auth type is token
+        Object.assign({}, factoryAuthOptions, {
+          octokit: state.octokit,
+          octokitOptions: state.octokitOptions,
+        })
+      );
+    }
+
     return state.auth(options);
   }
 
