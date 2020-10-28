@@ -1,4 +1,7 @@
 {
   "extends": "@octokit/tsconfig",
-  "include": ["src/**/*"]
+  "include": ["src/**/*"],
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true
+  }
 }
