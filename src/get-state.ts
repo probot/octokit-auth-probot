@@ -1,5 +1,6 @@
 import { createTokenAuth } from "@octokit/auth-token";
 import { createAppAuth } from "@octokit/auth-app";
+import { createUnauthenticatedAuth } from "@octokit/auth-unauthenticated";
 
 import { State, StrategyOptions } from "./types";
 
@@ -17,9 +18,19 @@ export function getState(options: StrategyOptions): State {
     };
   }
 
+  if ("appId" in options && "privateKey" in options) {
+    return {
+      type: "app",
+      auth: createAppAuth(options),
+      ...common,
+    };
+  }
+
   return {
-    type: "app",
-    auth: createAppAuth(options),
+    type: "unauthenticated",
+    auth: createUnauthenticatedAuth({
+      reason: `Neither "appId"/"privateKey" nor "token" have been set as auth options`,
+    }),
     ...common,
   };
 }

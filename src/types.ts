@@ -1,6 +1,7 @@
 import { Octokit } from "@octokit/core";
 import { createTokenAuth, Types as TokenAuthTypes } from "@octokit/auth-token";
 import { createAppAuth, Types as AppAuthTypes } from "@octokit/auth-app";
+import { createUnauthenticatedAuth } from "@octokit/auth-unauthenticated";
 
 type OctokitStrategyOptions = {
   octokit: InstanceType<typeof Octokit>;
@@ -33,4 +34,8 @@ type AppState = OctokitStrategyOptions & {
   type: "app";
   auth: ReturnType<typeof createAppAuth>;
 };
-export type State = TokenState | AppState;
+type UnauthenticatedState = OctokitStrategyOptions & {
+  type: "unauthenticated";
+  auth: ReturnType<typeof createUnauthenticatedAuth>;
+};
+export type State = TokenState | AppState | UnauthenticatedState;

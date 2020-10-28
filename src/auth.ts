@@ -24,7 +24,9 @@ export async function auth(state: State, options: AuthOptions) {
     return state.auth(options);
   }
 
-  if (state.type === "token") {
+  // unless the internal event type is "app", return the octokit
+  // instance passed as strategy option
+  if (state.type !== "app") {
     return state.octokit;
   }
 
