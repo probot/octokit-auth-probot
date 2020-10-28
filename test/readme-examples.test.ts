@@ -99,6 +99,29 @@ describe("README examples", () => {
     expect(data).toStrictEqual({ ok: true });
   });
 
+  it("Unauthenticated", async () => {
+    const mock = sandbox().postOnce("path:/app-manifests/123/conversions", {
+      status: 201,
+      body: {
+        id: 1,
+      },
+    });
+
+    const octokit = new ProbotOctokit({
+      request: {
+        fetch: mock,
+      },
+    });
+
+    const { data } = await octokit.request(
+      "POST /app-manifests/{code}/conversions",
+      {
+        code: 123,
+      }
+    );
+    expect(data).toStrictEqual({ id: 1 });
+  });
+
   describe("Get authenticated octokit instance based on event", () => {
     test("with token auth", async () => {
       const mock = sandbox().get(
