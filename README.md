@@ -94,6 +94,14 @@ const octokit = new ProbotOctokit({
 });
 ```
 
+### Unauthenticated
+
+```js
+const octokit = new ProbotOctokit();
+```
+
+This is useful if you need to send a request without access to authentication. Probot's use case here is [Create a GitHub App from a manifest](https://docs.github.com/en/free-pro-team@latest/rest/reference/apps#create-a-github-app-from-a-manifest) (`POST /app-manifests/{code}/conversions`), which is used to register a GitHub app and retrieve the credentials in return.
+
 ### Get authenticated octokit instance based on event
 
 ```js
