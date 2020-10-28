@@ -81,7 +81,7 @@ const octokit = new ProbotOctokit({
 });
 ```
 
-**Note**: `octokit.auth()` will always resolve with an [`oauth` authentication object](https://github.com/octokit/auth-token.js#authentication-object), no matter what options you will pass.
+**Note**: when using `octokit.auth({ type: "installation", factory })`, `factory(options)` will be called with `options.octokit`, `options.octokitOptions`, plus any other properties that have been passed to `octokit.auth()` besides `type` and `factory`. In all other cases, `octokit.auth()` will resolve with an [`oauth` authentication object](https://github.com/octokit/auth-token.js#authentication-object), no matter the passed options.
 
 ### App authentication
 

@@ -8,10 +8,11 @@ export function getState(options: StrategyOptions): State {
     octokit: options.octokit,
     octokitOptions: options.octokitOptions,
   };
+
   if ("token" in options) {
     return {
       type: "token",
-      auth: createTokenAuth(options.token),
+      auth: createTokenAuth(String(options.token)),
       ...common,
     };
   }
