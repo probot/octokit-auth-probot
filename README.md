@@ -81,6 +81,8 @@ const octokit = new ProbotOctokit({
 });
 ```
 
+**Note**: `octokit.auth()` will always resolve with an [`oauth` authentication object](https://github.com/octokit/auth-token.js#authentication-object), no matter what options you will pass.
+
 ### App authentication
 
 ```js
