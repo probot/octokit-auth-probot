@@ -116,10 +116,10 @@ describe("README examples", () => {
     const { data } = await octokit.request(
       "POST /app-manifests/{code}/conversions",
       {
-        code: 123,
+        code: "123",
       }
     );
-    expect(data).toStrictEqual({ id: 1 });
+    expect(data.id).toEqual(1);
   });
 
   describe("Get authenticated octokit instance based on event", () => {
