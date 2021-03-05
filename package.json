@@ -10,7 +10,7 @@
     "pretest": "npm run -s lint",
     "test": "jest --coverage"
   },
-  "repository": "https://github.com/probot/octokit-auth-probot",
+  "repository": "github:probot/octokit-auth-probot",
   "keywords": [
     "octokit-authentication-strategy"
   ],
