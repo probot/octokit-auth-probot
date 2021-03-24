@@ -1,6 +1,6 @@
 import { Octokit } from "@octokit/core";
 import { createTokenAuth, Types as TokenAuthTypes } from "@octokit/auth-token";
-import { createAppAuth, Types as AppAuthTypes } from "@octokit/auth-app";
+import * as AppAuth from "@octokit/auth-app";
 import { createUnauthenticatedAuth } from "@octokit/auth-unauthenticated";
 
 type OctokitStrategyOptions = {
@@ -9,11 +9,11 @@ type OctokitStrategyOptions = {
 };
 export type StrategyOptions =
   | (OctokitStrategyOptions & { token: string })
-  | (OctokitStrategyOptions & AppAuthTypes["StrategyOptions"]);
+  | (OctokitStrategyOptions & AppAuth.StrategyOptions);
 
 export type AuthOptions =
   | TokenAuthTypes["AuthOptions"]
-  | AppAuthTypes["AuthOptions"]
+  | AppAuth.AuthOptions
   | {
       type: "event-octokit";
       event: {
@@ -32,7 +32,7 @@ type TokenState = OctokitStrategyOptions & {
 };
 type AppState = OctokitStrategyOptions & {
   type: "app";
-  auth: ReturnType<typeof createAppAuth>;
+  auth: ReturnType<typeof AppAuth.createAppAuth>;
 };
 type UnauthenticatedState = OctokitStrategyOptions & {
   type: "unauthenticated";
