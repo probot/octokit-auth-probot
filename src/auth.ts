@@ -35,8 +35,8 @@ export async function auth(state: State, options: AuthOptions) {
     options.event.payload.installation && options.event.payload.installation.id;
   const fullEventName = options.event.name + (action ? "." + action : "");
 
-  const OctokitWithEventAuth = (state.octokit
-    .constructor as unknown) as typeof Octokit;
+  const OctokitWithEventAuth = state.octokit
+    .constructor as unknown as typeof Octokit;
 
   if (!installationId) {
     const { auth, ...octokitOptions } = state.octokitOptions;
