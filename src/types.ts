@@ -13,7 +13,7 @@ export type StrategyOptions =
 
 export type AuthOptions =
   | TokenAuthTypes["AuthOptions"]
-  | AppAuth.AuthOptions
+  | AppAuth.InstallationAuthOptions
   | {
       type: "event-octokit";
       event: {
