@@ -3,7 +3,7 @@ import { getState } from "./get-state";
 import { StrategyOptions, State } from "./types";
 import { VERSION } from "./version";
 
-export function createProbotAuth(options: StrategyOptions) {
+export function createProbotAuth(options: StrategyOptions): any {
   const state: State = getState(options);
 
   return Object.assign(auth.bind(null, state), {
