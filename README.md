@@ -115,7 +115,7 @@ const eventOctokit = await octokit.auth({
 
 1. If `octokit` was authenticated using a token, `eventOctokit` is authenticated with the same token. In fact, `eventOctokit` _is_ `octokit`
 2. If `event` name is `installation` and `payload.action` is either `suspend` or `deleted`, then `eventOctokit` is unauthenticated using [`@octokit/auth-unauthenticated`](https://github.com/octokit/auth-unauthenticated.js#readme)
-3. Otherwise `eventOctokit` is authenticate as installation based on `payload.installation.id`
+3. Otherwise `eventOctokit` is authenticated as installation based on `payload.installation.id`
 
 ## LICENSE
 
