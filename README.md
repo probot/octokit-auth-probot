@@ -56,7 +56,7 @@ const { createProbotAuth } = require("octokit-auth-probot");
 openssl pkcs8 -topk8 -inform PEM -outform PEM -nocrypt -in private-key.pem -out private-key-pkcs8.key
 ```
 
-No conversation is needed in Node, both `PKCS#1` and `PKCS#8` format will work.
+No conversion is needed in Node, both `PKCS#1` and `PKCS#8` format will work.
 
 </td></tr>
 </tbody>
