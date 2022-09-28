@@ -56,7 +56,7 @@ const { createProbotAuth } = require("octokit-auth-probot");
 openssl pkcs8 -topk8 -inform PEM -outform PEM -nocrypt -in private-key.pem -out private-key-pkcs8.key
 ```
 
-No conversation is needed in Node, both `PKCS#1` and `PKCS#8` format will work.
+No conversion is needed in Node, both `PKCS#1` and `PKCS#8` format will work.
 
 </td></tr>
 </tbody>
@@ -111,11 +111,11 @@ const eventOctokit = await octokit.auth({
 });
 ```
 
-`eventOctokit` is now authenticate in one of three ways
+`eventOctokit` is now authenticated in one of three ways:
 
 1. If `octokit` was authenticated using a token, `eventOctokit` is authenticated with the same token. In fact, `eventOctokit` _is_ `octokit`
 2. If `event` name is `installation` and `payload.action` is either `suspend` or `deleted`, then `eventOctokit` is unauthenticated using [`@octokit/auth-unauthenticated`](https://github.com/octokit/auth-unauthenticated.js#readme)
-3. Otherwise `eventOctokit` is authenticate as installation based on `payload.installation.id`
+3. Otherwise `eventOctokit` is authenticated as installation based on `payload.installation.id`
 
 ## LICENSE
 
