@@ -19,7 +19,7 @@
   "dependencies": {
     "@octokit/auth-app": "^4.0.2",
     "@octokit/auth-token": "^3.0.0",
-    "@octokit/auth-unauthenticated": "^3.0.0",
+    "@octokit/auth-unauthenticated": "^4.0.0",
     "@octokit/types": "^8.0.0"
   },
   "peerDependencies": {
