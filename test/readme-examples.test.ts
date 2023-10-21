@@ -2,7 +2,7 @@ import { Octokit } from "@octokit/core";
 import fetchMock from "fetch-mock";
 import MockDate from "mockdate";
 
-import { createProbotAuth } from "../src";
+import { createProbotAuth } from "../src/index.js";
 
 const ProbotOctokit = Octokit.defaults({
   authStrategy: createProbotAuth,
