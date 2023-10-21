@@ -2,7 +2,7 @@ import { createTokenAuth } from "@octokit/auth-token";
 import { createAppAuth } from "@octokit/auth-app";
 import { createUnauthenticatedAuth } from "@octokit/auth-unauthenticated";
 
-import { State, StrategyOptions } from "./types";
+import type { State, StrategyOptions } from "./types";
 
 export function getState(options: StrategyOptions): State {
   const common = {
