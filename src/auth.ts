@@ -1,5 +1,5 @@
 import { createUnauthenticatedAuth } from "@octokit/auth-unauthenticated";
-import { Octokit } from "@octokit/core";
+import type { Octokit } from "@octokit/core";
 
 import type { AuthOptions, State } from "./types";
 
