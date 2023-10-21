@@ -4,7 +4,7 @@
   "description": "Octokit authentication strategy that supports token, app (JWT), and event-based installation authentication",
   "main": "index.js",
   "scripts": {
-    "build": "pika build",
+    "build": "node scripts/build.mjs && tsc -p tsconfig.json",
     "lint": "prettier --check '{src,test}/**/*.{ts,md}' *.md *.json",
     "lint:fix": "prettier --write '{src,test}/**/*.{ts,md}' *.md *.json",
     "pretest": "npm run -s lint",
@@ -41,7 +41,6 @@
     "typescript": "^5.2.2"
   },
   "jest": {
-    "preset": "ts-jest",
     "testEnvironment": "node",
     "coverageThreshold": {
       "global": {
@@ -55,9 +54,7 @@
       "^.+\\.tsx?$": [
         "ts-jest",
         {
-          "tsconfig": {
-            "esModuleInterop": true
-          }
+          "tsconfig": "test/tsconfig.json"
         }
       ]
     }

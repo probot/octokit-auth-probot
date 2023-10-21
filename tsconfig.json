@@ -2,6 +2,11 @@
   "extends": "@octokit/tsconfig",
   "include": ["src/**/*"],
   "compilerOptions": {
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "declaration": true,
+    "outDir": "pkg/dist-types",
+    "emitDeclarationOnly": true,
+    "sourceMap": true
   }
 }
