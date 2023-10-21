@@ -1,5 +1,8 @@
 import { Octokit } from "@octokit/core";
-import { createTokenAuth, Types as TokenAuthTypes } from "@octokit/auth-token";
+import {
+  createTokenAuth,
+  type Types as TokenAuthTypes,
+} from "@octokit/auth-token";
 import * as AppAuth from "@octokit/auth-app";
 import { createUnauthenticatedAuth } from "@octokit/auth-unauthenticated";
 

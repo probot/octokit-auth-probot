@@ -1,7 +1,7 @@
 import { createUnauthenticatedAuth } from "@octokit/auth-unauthenticated";
 import { Octokit } from "@octokit/core";
 
-import { AuthOptions, State } from "./types";
+import type { AuthOptions, State } from "./types";
 
 export async function auth(state: State, options: AuthOptions) {
   // return authentication from internal auth instance unless the event is "event-octokit"
@@ -17,7 +17,7 @@ export async function auth(state: State, options: AuthOptions) {
         Object.assign({}, factoryAuthOptions, {
           octokit: state.octokit,
           octokitOptions: state.octokitOptions,
-        })
+        }),
       );
     }
 

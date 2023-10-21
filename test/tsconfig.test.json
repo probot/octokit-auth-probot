@@ -1,0 +1,12 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "module": "CommonJS",
+    "emitDeclarationOnly": false,
+    "noEmit": true,
+    "verbatimModuleSyntax": false
+  },
+  "include": [
+    "src/**/*"
+  ]
+}

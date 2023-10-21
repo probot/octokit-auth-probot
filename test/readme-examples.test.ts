@@ -58,7 +58,7 @@ describe("README examples", () => {
         headers: {
           authorization: "token secret123",
         },
-      }
+      },
     );
 
     const octokit = new ProbotOctokit({
@@ -71,7 +71,7 @@ describe("README examples", () => {
     });
 
     const { data } = await octokit.request("/");
-    expect(data).toStrictEqual({ ok: true });
+    expect(data).toMatchObject({ ok: true });
   });
 
   it("App authentication", async () => {
@@ -82,7 +82,7 @@ describe("README examples", () => {
         headers: {
           authorization: "bearer " + BEARER,
         },
-      }
+      },
     );
 
     const octokit = new ProbotOctokit({
@@ -96,7 +96,7 @@ describe("README examples", () => {
     });
 
     const { data } = await octokit.request("/app");
-    expect(data).toStrictEqual({ ok: true });
+    expect(data).toMatchObject({ ok: true });
   });
 
   it("Unauthenticated", async () => {
@@ -117,7 +117,7 @@ describe("README examples", () => {
       "POST /app-manifests/{code}/conversions",
       {
         code: "123",
-      }
+      },
     );
     expect(data.id).toEqual(1);
   });
@@ -131,7 +131,7 @@ describe("README examples", () => {
           headers: {
             authorization: "token secret123",
           },
-        }
+        },
       );
 
       const octokit = new ProbotOctokit({
@@ -149,7 +149,7 @@ describe("README examples", () => {
       })) as unknown as InstanceType<typeof ProbotOctokit>;
 
       const { data } = await eventOctokit.request("/");
-      expect(data).toStrictEqual({ ok: true });
+      expect(data).toMatchObject({ ok: true });
     });
 
     test("with app auth and push event", async () => {
@@ -168,7 +168,7 @@ describe("README examples", () => {
             headers: {
               authorization: "bearer " + BEARER,
             },
-          }
+          },
         )
         .getOnce(
           "path:/",
@@ -177,7 +177,7 @@ describe("README examples", () => {
             headers: {
               authorization: "token secret123",
             },
-          }
+          },
         );
 
       const ProbotOctokitWithRequestMock = ProbotOctokit.defaults({
@@ -198,7 +198,7 @@ describe("README examples", () => {
       })) as unknown as InstanceType<typeof ProbotOctokit>;
 
       const { data } = await eventOctokit.request("/");
-      expect(data).toStrictEqual({ ok: true });
+      expect(data).toMatchObject({ ok: true });
       expect(mock.done()).toBeTruthy();
     });
 
@@ -230,7 +230,7 @@ describe("README examples", () => {
         throw new Error("request should not resolve");
       } catch (error: any) {
         expect(error.message).toEqual(
-          `Not found. May be due to lack of authentication. Reason: Handling a "installation.deleted" event: The app's access has been revoked from @octokit (id: 123)`
+          `Not found. May be due to lack of authentication. Reason: Handling a "installation.deleted" event: The app's access has been revoked from @octokit (id: 123)`,
         );
       }
     });

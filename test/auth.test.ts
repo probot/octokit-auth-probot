@@ -105,7 +105,7 @@ describe("octokit.auth()", () => {
         throw new Error("should not resolve");
       } catch (error: any) {
         expect(error.message).toEqual(
-          'Not found. May be due to lack of authentication. Reason: Handling a "test" event: an "installation" key is missing. The installation ID cannot be determined'
+          'Not found. May be due to lack of authentication. Reason: Handling a "test" event: an "installation" key is missing. The installation ID cannot be determined',
         );
       }
 
@@ -125,7 +125,7 @@ describe("octokit.auth()", () => {
         throw new Error("should not resolve");
       } catch (error: any) {
         expect(error.message).toEqual(
-          'Not found. May be due to lack of authentication. Reason: Handling a "test.test" event: an "installation" key is missing. The installation ID cannot be determined'
+          'Not found. May be due to lack of authentication. Reason: Handling a "test.test" event: an "installation" key is missing. The installation ID cannot be determined',
         );
       }
     });
