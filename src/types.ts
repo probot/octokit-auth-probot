@@ -1,7 +1,10 @@
-import { Octokit } from "@octokit/core";
-import { createTokenAuth, Types as TokenAuthTypes } from "@octokit/auth-token";
-import * as AppAuth from "@octokit/auth-app";
-import { createUnauthenticatedAuth } from "@octokit/auth-unauthenticated";
+import type { Octokit } from "@octokit/core";
+import type {
+  createTokenAuth,
+  Types as TokenAuthTypes,
+} from "@octokit/auth-token";
+import type * as AppAuth from "@octokit/auth-app";
+import type { createUnauthenticatedAuth } from "@octokit/auth-unauthenticated";
 
 type OctokitStrategyOptions = {
   octokit: InstanceType<typeof Octokit>;

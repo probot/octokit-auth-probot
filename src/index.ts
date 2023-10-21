@@ -1,6 +1,6 @@
-import { StrategyOptions, State } from "./types";
 import { auth } from "./auth.js";
 import { getState } from "./get-state.js";
+import type { StrategyOptions, State } from "./types";
 import { VERSION } from "./version.js";
 
 export function createProbotAuth(options: StrategyOptions): any {
