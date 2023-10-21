@@ -23,12 +23,12 @@ It adds a new authentication type: `"event-octokit"`, which allows to retrieve a
 Browsers
 </th><td width=100%>
 
-Load `octokit-auth-probot` directly from [cdn.pika.dev](https://cdn.pika.dev)
+Load `octokit-auth-probot` directly from [esm.sh](https://esm.sh)
 
 ```html
 <script type="module">
-  import { Octokit } from "https://cdn.pika.dev/@octokit/core";
-  import { createProbotAuth } from "https://cdn.pika.dev/octokit-auth-probot";
+  import { Octokit } from "https://esm.sh/@octokit/core";
+  import { createProbotAuth } from "https://esm.sh/octokit-auth-probot";
 </script>
 ```
 
