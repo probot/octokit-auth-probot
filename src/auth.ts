@@ -17,7 +17,7 @@ export async function auth(state: State, options: AuthOptions) {
         Object.assign({}, factoryAuthOptions, {
           octokit: state.octokit,
           octokitOptions: state.octokitOptions,
-        })
+        }),
       );
     }
 
