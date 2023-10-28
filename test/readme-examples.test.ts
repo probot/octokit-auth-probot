@@ -1,5 +1,5 @@
 import { Octokit } from "@octokit/core";
-import * as fetchMock from "fetch-mock";
+import fetchMock from "fetch-mock";
 import MockDate from "mockdate";
 
 import { createProbotAuth } from "../src/index.js";
