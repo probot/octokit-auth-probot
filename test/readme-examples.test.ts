@@ -7,7 +7,6 @@ import { createProbotAuth } from "../src/index.js";
 const ProbotOctokit = Octokit.defaults({
   authStrategy: createProbotAuth,
 });
-const sandbox = fetchMock.sandbox.bind(fetchMock);
 
 const APP_ID = 1;
 const PRIVATE_KEY = `-----BEGIN RSA PRIVATE KEY-----
@@ -51,7 +50,7 @@ afterEach(() => {
 
 describe("README examples", () => {
   it("Token authentication", async () => {
-    const mock = sandbox().get(
+    const mock = fetchMock.sandbox().get(
       "path:/",
       { ok: true },
       {
@@ -75,7 +74,7 @@ describe("README examples", () => {
   });
 
   it("App authentication", async () => {
-    const mock = sandbox().get(
+    const mock = fetchMock.sandbox().get(
       "path:/app",
       { ok: true },
       {
@@ -100,12 +99,14 @@ describe("README examples", () => {
   });
 
   it("Unauthenticated", async () => {
-    const mock = sandbox().postOnce("path:/app-manifests/123/conversions", {
-      status: 201,
-      body: {
-        id: 1,
-      },
-    });
+    const mock = fetchMock
+      .sandbox()
+      .postOnce("path:/app-manifests/123/conversions", {
+        status: 201,
+        body: {
+          id: 1,
+        },
+      });
 
     const octokit = new ProbotOctokit({
       request: {
@@ -124,7 +125,7 @@ describe("README examples", () => {
 
   describe("Get authenticated octokit instance based on event", () => {
     test("with token auth", async () => {
-      const mock = sandbox().get(
+      const mock = fetchMock.sandbox().get(
         "path:/",
         { ok: true },
         {
@@ -153,7 +154,8 @@ describe("README examples", () => {
     });
 
     test("with app auth and push event", async () => {
-      const mock = sandbox()
+      const mock = fetchMock
+        .sandbox()
         .postOnce(
           "path:/app/installations/123/access_tokens",
           {
@@ -203,7 +205,7 @@ describe("README examples", () => {
     });
 
     test("with app auth and installation.deleted event", async () => {
-      const mock = sandbox().getOnce("path:/", 404);
+      const mock = fetchMock.sandbox().getOnce("path:/", 404);
 
       const ProbotOctokitWithRequestMock = ProbotOctokit.defaults({
         request: {
