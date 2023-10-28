@@ -70,7 +70,7 @@ describe("README examples", () => {
     });
 
     const { data } = await octokit.request("/");
-    expect(data).toStrictEqual({ ok: true });
+    expect({ ...data }).toStrictEqual({ ok: true });
   });
 
   it("App authentication", async () => {
@@ -95,7 +95,7 @@ describe("README examples", () => {
     });
 
     const { data } = await octokit.request("/app");
-    expect(data).toStrictEqual({ ok: true });
+    expect({ ...data }).toStrictEqual({ ok: true });
   });
 
   it("Unauthenticated", async () => {
@@ -150,7 +150,7 @@ describe("README examples", () => {
       })) as unknown as InstanceType<typeof ProbotOctokit>;
 
       const { data } = await eventOctokit.request("/");
-      expect(data).toStrictEqual({ ok: true });
+      expect({ ...data }).toStrictEqual({ ok: true });
     });
 
     test("with app auth and push event", async () => {
@@ -200,7 +200,7 @@ describe("README examples", () => {
       })) as unknown as InstanceType<typeof ProbotOctokit>;
 
       const { data } = await eventOctokit.request("/");
-      expect(data).toStrictEqual({ ok: true });
+      expect({ ...data }).toStrictEqual({ ok: true });
       expect(mock.done()).toBeTruthy();
     });
 
