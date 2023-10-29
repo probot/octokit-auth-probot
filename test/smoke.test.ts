@@ -1,4 +1,4 @@
-import { createProbotAuth } from "../src";
+import { createProbotAuth } from "../src/index.js";
 
 describe("Smoke test", () => {
   it("is a function", () => {

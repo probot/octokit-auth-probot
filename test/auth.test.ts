@@ -1,12 +1,11 @@
 import { Octokit } from "@octokit/core";
 import fetchMock from "fetch-mock";
 
-import { createProbotAuth } from "../src";
+import { createProbotAuth } from "../src/index.js";
 
 const ProbotOctokit = Octokit.defaults({
   authStrategy: createProbotAuth,
 });
-const sandbox = fetchMock.sandbox.bind(fetchMock);
 
 const APP_ID = 1;
 const PRIVATE_KEY = `-----BEGIN RSA PRIVATE KEY-----
@@ -78,7 +77,7 @@ describe("octokit.auth()", () => {
 
   describe("App authentication", () => {
     test(".auth({ type: 'event-octokit', event }) with event.payload.installation missing", async () => {
-      const mock = sandbox().get("path:/", 404, { repeat: 2 });
+      const mock = fetchMock.sandbox().get("path:/", 404, { repeat: 2 });
 
       const octokit = new ProbotOctokit({
         auth: {
@@ -105,7 +104,7 @@ describe("octokit.auth()", () => {
         throw new Error("should not resolve");
       } catch (error: any) {
         expect(error.message).toEqual(
-          'Not found. May be due to lack of authentication. Reason: Handling a "test" event: an "installation" key is missing. The installation ID cannot be determined'
+          'Not found. May be due to lack of authentication. Reason: Handling a "test" event: an "installation" key is missing. The installation ID cannot be determined',
         );
       }
 
@@ -125,7 +124,7 @@ describe("octokit.auth()", () => {
         throw new Error("should not resolve");
       } catch (error: any) {
         expect(error.message).toEqual(
-          'Not found. May be due to lack of authentication. Reason: Handling a "test.test" event: an "installation" key is missing. The installation ID cannot be determined'
+          'Not found. May be due to lack of authentication. Reason: Handling a "test.test" event: an "installation" key is missing. The installation ID cannot be determined',
         );
       }
     });
