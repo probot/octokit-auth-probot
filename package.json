@@ -75,6 +75,7 @@
   },
   "release": {
     "branches": [
+      "+([0-9]).x",
       "main"
     ],
     "plugins": [
