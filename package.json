@@ -64,7 +64,12 @@
   },
   "release": {
     "branches": [
-      "main"
+      "+([0-9]).x",
+      "main",
+      {
+        "name": "beta",
+        "prerelease": true
+      }
     ],
     "plugins": [
       "@semantic-release/commit-analyzer",
