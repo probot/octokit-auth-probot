@@ -1,6 +1,7 @@
 {
   "name": "octokit-auth-probot",
   "version": "0.0.0-development",
+  "type": "module",
   "description": "Octokit authentication strategy that supports token, app (JWT), and event-based installation authentication",
   "main": "index.js",
   "scripts": {
