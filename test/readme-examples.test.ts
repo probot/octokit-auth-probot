@@ -4,6 +4,8 @@ import MockDate from "mockdate";
 
 import { createProbotAuth } from "../src/index.js";
 
+import { afterEach, beforeEach, describe, expect, it, test } from "vitest";
+
 const ProbotOctokit = Octokit.defaults({
   authStrategy: createProbotAuth,
 });
