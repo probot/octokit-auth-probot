@@ -3,6 +3,8 @@ import fetchMock from "fetch-mock";
 
 import { createProbotAuth } from "../src/index.js";
 
+import { describe, expect, test, vi } from "vitest";
+
 const ProbotOctokit = Octokit.defaults({
   authStrategy: createProbotAuth,
 });
@@ -61,7 +63,7 @@ describe("octokit.auth()", () => {
       };
       const octokit = new ProbotOctokit(octokitOptions);
 
-      const factory = jest.fn().mockReturnValue("test");
+      const factory = vi.fn().mockReturnValue("test");
 
       const authentication = await octokit.auth({
         type: "installation",
