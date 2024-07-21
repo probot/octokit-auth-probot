@@ -33,7 +33,7 @@
     "@types/node": "^18.18.6",
     "@vitest/coverage-v8": "^1.5.3",
     "@vitest/ui": "^1.5.3",
-    "esbuild": "^0.20.0",
+    "esbuild": "^0.23.0",
     "fetch-mock": "npm:@gr2m/fetch-mock@9.11.0-pull-request-644.1",
     "glob": "^10.3.10",
     "mockdate": "^3.0.2",
