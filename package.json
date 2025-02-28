@@ -27,6 +27,7 @@
     "@octokit/core": ">=6"
   },
   "devDependencies": {
+    "@fetch-mock/vitest": "^0.2.10",
     "@octokit/core": "^6.0.0",
     "@octokit/tsconfig": "^3.0.0",
     "@types/node": "^18.18.6",
