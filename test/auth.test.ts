@@ -1,9 +1,9 @@
 import { Octokit } from "@octokit/core";
-import fetchMock from "fetch-mock";
+import fetchMock from "@fetch-mock/vitest";
 
 import { createProbotAuth } from "../src/index.js";
 
-import { describe, expect, test, vi } from "vitest";
+import { beforeEach, describe, expect, test, vi } from "vitest";
 
 const ProbotOctokit = Octokit.defaults({
   authStrategy: createProbotAuth,
@@ -37,6 +37,13 @@ ZcJjRIt8w8g/s4X6MhKasBYm9s3owALzCuJjGzUKcDHiO2DKu1xXAb0SzRcTzUCn
 9/49J6WTD++EajN7FhktUSYxukdWaCocAQJTDNYP0K88G4rtC2IYy5JFn9SWz5oh
 x//0u+zd/R/QRUzLOw4N72/Hu+UG6MNt5iDZFCtapRaKt6OvSBwy8w==
 -----END RSA PRIVATE KEY-----`;
+
+fetchMock.mockGlobal();
+
+beforeEach(() => {
+  fetchMock.clearHistory();
+  fetchMock.removeRoutes();
+});
 
 describe("octokit.auth()", () => {
   describe("Token authentication", () => {
@@ -79,15 +86,12 @@ describe("octokit.auth()", () => {
 
   describe("App authentication", () => {
     test(".auth({ type: 'event-octokit', event }) with event.payload.installation missing", async () => {
-      const mock = fetchMock.sandbox().get("path:/", 404, { repeat: 2 });
+      fetchMock.get("path:/", 404, { repeat: 2 });
 
       const octokit = new ProbotOctokit({
         auth: {
           appId: APP_ID,
           privateKey: PRIVATE_KEY,
-        },
-        request: {
-          fetch: mock,
         },
       });
 

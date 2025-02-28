@@ -1,5 +1,5 @@
 import { Octokit } from "@octokit/core";
-import fetchMock from "fetch-mock";
+import fetchMock from "@fetch-mock/vitest";
 import MockDate from "mockdate";
 
 import { createProbotAuth } from "../src/index.js";
@@ -42,8 +42,12 @@ x//0u+zd/R/QRUzLOw4N72/Hu+UG6MNt5iDZFCtapRaKt6OvSBwy8w==
 const BEARER =
   "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOi0zMCwiZXhwIjo1NzAsImlzcyI6MX0.q3foRa78U3WegM5PrWLEh5N0bH1SD62OqW66ZYzArp95JBNiCbo8KAlGtiRENCIfBZT9ibDUWy82cI4g3F09mdTq3bD1xLavIfmTksIQCz5EymTWR5v6gL14LSmQdWY9lSqkgUG0XCFljWUglEP39H4yeHbFgdjvAYg3ifDS12z9oQz2ACdSpvxPiTuCC804HkPVw8Qoy0OSXvCkFU70l7VXCVUxnuhHnk8-oCGcKUspmeP6UdDnXk-Aus-eGwDfJbU2WritxxaXw6B4a3flTPojkYLSkPBr6Pi0H2-mBsW_Nvs0aLPVLKobQd4gqTkosX3967DoAG8luUMhrnxe8Q";
 
+fetchMock.mockGlobal();
+
 beforeEach(() => {
   MockDate.set(0);
+  fetchMock.clearHistory();
+  fetchMock.removeRoutes();
 });
 
 afterEach(() => {
@@ -52,7 +56,7 @@ afterEach(() => {
 
 describe("README examples", () => {
   it("Token authentication", async () => {
-    const mock = fetchMock.sandbox().get(
+    fetchMock.get(
       "path:/",
       { ok: true },
       {
@@ -66,9 +70,6 @@ describe("README examples", () => {
       auth: {
         token: "secret123",
       },
-      request: {
-        fetch: mock,
-      },
     });
 
     const { data } = await octokit.request("/");
@@ -76,7 +77,7 @@ describe("README examples", () => {
   });
 
   it("App authentication", async () => {
-    const mock = fetchMock.sandbox().get(
+    fetchMock.get(
       "path:/app",
       { ok: true },
       {
@@ -91,9 +92,6 @@ describe("README examples", () => {
         appId: APP_ID,
         privateKey: PRIVATE_KEY,
       },
-      request: {
-        fetch: mock,
-      },
     });
 
     const { data } = await octokit.request("/app");
@@ -101,20 +99,14 @@ describe("README examples", () => {
   });
 
   it("Unauthenticated", async () => {
-    const mock = fetchMock
-      .sandbox()
-      .postOnce("path:/app-manifests/123/conversions", {
-        status: 201,
-        body: {
-          id: 1,
-        },
-      });
-
-    const octokit = new ProbotOctokit({
-      request: {
-        fetch: mock,
+    fetchMock.postOnce("path:/app-manifests/123/conversions", {
+      status: 201,
+      body: {
+        id: 1,
       },
     });
+
+    const octokit = new ProbotOctokit();
 
     const { data } = await octokit.request(
       "POST /app-manifests/{code}/conversions",
@@ -127,7 +119,7 @@ describe("README examples", () => {
 
   describe("Get authenticated octokit instance based on event", () => {
     test("with token auth", async () => {
-      const mock = fetchMock.sandbox().get(
+      fetchMock.get(
         "path:/",
         { ok: true },
         {
@@ -141,9 +133,6 @@ describe("README examples", () => {
         auth: {
           token: "secret123",
         },
-        request: {
-          fetch: mock,
-        },
       });
 
       const eventOctokit = (await octokit.auth({
@@ -156,8 +145,7 @@ describe("README examples", () => {
     });
 
     test("with app auth and push event", async () => {
-      const mock = fetchMock
-        .sandbox()
+      fetchMock
         .postOnce(
           "path:/app/installations/123/access_tokens",
           {
@@ -184,12 +172,7 @@ describe("README examples", () => {
           },
         );
 
-      const ProbotOctokitWithRequestMock = ProbotOctokit.defaults({
-        request: {
-          fetch: mock,
-        },
-      });
-      const octokit = new ProbotOctokitWithRequestMock({
+      const octokit = new ProbotOctokit({
         auth: {
           appId: APP_ID,
           privateKey: PRIVATE_KEY,
@@ -203,18 +186,14 @@ describe("README examples", () => {
 
       const { data } = await eventOctokit.request("/");
       expect({ ...data }).toStrictEqual({ ok: true });
-      expect(mock.done()).toBeTruthy();
+      console.log(fetchMock.callHistory);
+      expect(fetchMock).toBeDone();
     });
 
     test("with app auth and installation.deleted event", async () => {
-      const mock = fetchMock.sandbox().getOnce("path:/", 404);
+      fetchMock.getOnce("path:/", 404);
 
-      const ProbotOctokitWithRequestMock = ProbotOctokit.defaults({
-        request: {
-          fetch: mock,
-        },
-      });
-      const octokit = new ProbotOctokitWithRequestMock({
+      const octokit = new ProbotOctokit({
         auth: {
           appId: APP_ID,
           privateKey: PRIVATE_KEY,
