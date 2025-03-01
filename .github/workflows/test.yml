@@ -3,7 +3,8 @@ name: Test
   push:
     branches:
       - main
-      - dependabot/npm_and_yarn/**
+      - beta
+      - renovate/**
   pull_request:
     types:
       - opened
@@ -16,6 +17,7 @@ jobs:
         node_version:
           - 18
           - 20
+          - 22
     steps:
       - uses: actions/checkout@v4
       - name: Use Node.js ${{ matrix.node_version }}
