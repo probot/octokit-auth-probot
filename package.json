@@ -61,14 +61,7 @@
           "pkgRoot": "./pkg"
         }
       ],
-      [
-        "@sebbo2002/semantic-release-jsr",
-        {
-          "publishArgs": [
-            "--allow-slow-types"
-          ]
-        }
-      ]
+      "@sebbo2002/semantic-release-jsr"
     ]
   },
   "engines": {
