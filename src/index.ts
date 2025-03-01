@@ -8,7 +8,12 @@ export interface ProbotAuth {
   hook: State["auth"]["hook"];
 }
 
-export function createProbotAuth(options: StrategyOptions): ProbotAuth {
+export interface createProbotAuth {
+  (options: StrategyOptions): ProbotAuth;
+  VERSION: string;
+}
+
+function createProbotAuthFn(options: StrategyOptions): ProbotAuth {
   const state: State = getState(options);
 
   return Object.assign(auth.bind(null, state), {
@@ -16,4 +21,6 @@ export function createProbotAuth(options: StrategyOptions): ProbotAuth {
   });
 }
 
-createProbotAuth.VERSION = VERSION;
+createProbotAuthFn.VERSION = VERSION;
+
+export const createProbotAuth: createProbotAuth = createProbotAuthFn;

@@ -1,0 +1,10 @@
+{
+  "$schema": "https://jsr.io/schema/config-file.v1.json",
+  "name": "@probot/octokit-auth-probot",
+  "version": "0.0.0-development",
+  "publish": {
+    "include": ["src", "README.md", "LICENSE"],
+    "exclude": ["test", "scripts"]
+  },
+  "exports": "./src/index.ts"
+}

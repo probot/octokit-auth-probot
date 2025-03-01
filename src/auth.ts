@@ -3,7 +3,10 @@ import type { Octokit } from "@octokit/core";
 
 import type { AuthOptions, State } from "./types.js";
 
-export async function auth(state: State, options: AuthOptions) {
+export async function auth(
+  state: State,
+  options: AuthOptions,
+): Promise<ReturnType<State["auth"]>> {
   // return authentication from internal auth instance unless the event is "event-octokit"
   if (options.type !== "event-octokit") {
     if (
