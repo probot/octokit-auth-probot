@@ -186,7 +186,6 @@ describe("README examples", () => {
 
       const { data } = await eventOctokit.request("/");
       expect({ ...data }).toStrictEqual({ ok: true });
-      console.log(fetchMock.callHistory);
       expect(fetchMock).toBeDone();
     });
 
