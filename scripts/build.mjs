@@ -1,6 +1,5 @@
 import esbuild from "esbuild";
 import { copyFile, readFile, writeFile, rm } from "node:fs/promises";
-import { glob } from "glob";
 
 const sharedOptions = {
   sourcemap: "external",
@@ -25,13 +24,7 @@ async function main() {
   });
 
   // Remove the types file from the dist-src folder
-  const typeFiles = await glob([
-    "./pkg/dist-src/**/types.js.map",
-    "./pkg/dist-src/**/types.js",
-  ]);
-  for (const typeFile of typeFiles) {
-    await rm(typeFile);
-  }
+  await rm("./pkg/dist-src/types.js")
 
   const entryPoints = ["./pkg/dist-src/index.js"];
 
