@@ -3,6 +3,10 @@ name: Update Prettier
   push:
     branches:
       - dependabot/npm_and_yarn/prettier-*
+
+permissions:
+  contents: write
+
 jobs:
   update_prettier:
     runs-on: ubuntu-latest
