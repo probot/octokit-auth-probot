@@ -18,7 +18,7 @@ export function getState(options: StrategyOptions): State {
     };
   }
 
-  if ("appId" in options && "privateKey" in options) {
+  if ("appId" in options && ("privateKey" in options || "createJwt" in options)) {
     return {
       type: "app",
       auth: createAppAuth(options),
