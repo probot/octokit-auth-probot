@@ -31,7 +31,7 @@
     "@octokit/core": "^7.0.3",
     "@octokit/tsconfig": "^4.0.0",
     "@sebbo2002/semantic-release-jsr": "^3.0.0",
-    "@types/node": "^22.0.0",
+    "@types/node": "^24.0.0",
     "@vitest/coverage-v8": "^4.0.0",
     "@vitest/ui": "^4.0.0",
     "esbuild": "^0.25.0",
