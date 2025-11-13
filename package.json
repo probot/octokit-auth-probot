@@ -21,7 +21,7 @@
     "@octokit/auth-app": "^8.1.0",
     "@octokit/auth-token": "^6.0.0",
     "@octokit/auth-unauthenticated": "^7.0.1",
-    "@octokit/types": "^15.0.0"
+    "@octokit/types": "^16.0.0"
   },
   "peerDependencies": {
     "@octokit/core": ">=7"
